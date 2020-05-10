@@ -1,0 +1,89 @@
+/* WordPress specific (and required) CSS */
+
+.aligncenter {
+  @extend .text-center;
+}
+
+.alignright {
+  @extend .text-right;
+}
+
+.alignleft {
+  @extend .text-left;
+}
+
+.wp-caption {
+  @extend .text-body;
+}
+
+.wp-caption-text {
+  @extend .text-muted;
+}
+
+.gallery-caption {
+  @extend .text-muted;
+}
+
+.bypostauthor {
+  @extend .text-muted;
+}
+
+.updated:not(.published) {
+  display: none;
+}
+
+nav .nav-links .nav-previous, nav .nav-links .nav-next {
+  display: inline-block;
+  padding: 0.5rem;
+}
+
+nav .nav-links .nav-previous a, nav .nav-links .nav-next a {
+  @extend .btn;
+  @extend .btn-outline-primary;
+}
+
+.entry-footer > span:not(:last-of-type) {
+  padding-right: $spacer;
+}
+
+/* Source: https://make.wordpress.org/accessibility/handbook/markup/the-css-class-screen-reader-text/ */
+
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  word-wrap: normal !important;
+
+  &:focus {
+	background-color: #eee;
+	clip: auto !important;
+	clip-path: none;
+	color: #444;
+	display: block;
+	font-size: 1em;
+	height: auto;
+	left: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 100000;
+  }
+}
+
+/* Font Awesome */
+
+.more-link i.fas, .more-link i.far, .more-link i.fal, .more-link i.fad, .more-link i.fab {
+  padding-left: $spacer / 2;
+}
+
+.entry-footer i.fas, .entry-footer i.far, .entry-footer i.fal, .entry-footer i.fad, .entry-footer i.fab {
+  padding-right: $spacer / 2;
+}
