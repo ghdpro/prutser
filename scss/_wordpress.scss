@@ -28,13 +28,26 @@
   @extend .text-muted;
 }
 
+.navbar {
+  margin-bottom: $spacer * 1.5;
+}
+
+article.post:not(:first-of-type) {
+  margin-top: $spacer * 3;
+}
+
 .updated:not(.published) {
   display: none;
 }
 
+.nav-links {
+  @extend .text-center;
+  margin: $spacer;
+}
+
 nav .nav-links .nav-previous, nav .nav-links .nav-next {
   display: inline-block;
-  padding: 0.5rem;
+  padding: $spacer / 2;
 }
 
 nav .nav-links .nav-previous a, nav .nav-links .nav-next a {
