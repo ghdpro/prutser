@@ -83,3 +83,66 @@ if ( ! function_exists( 'prutser_entry_footer' ) ) :
 
 	}
 endif;
+
+if ( ! function_exists( 'prutser_post_nav' ) ) {
+	function prutser_post_nav() {
+		$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
+		$next     = get_adjacent_post( false, '', false );
+
+		if ( ! $next && ! $previous ) {
+			return;
+		}
+		?>
+		<nav class="navigation post-navigation">
+			<h2 class="screen-reader-text"><?php esc_html_e( 'Post navigation', 'prutser' ); ?></h2>
+			<div class="row nav-links justify-content-between">
+				<?php
+				if ( get_previous_post_link() ) {
+					previous_post_link( '<span class="nav-previous">%link</span>', _x( '<i class="fas fa-angle-left"></i>%title', 'Previous post link', 'prutser' ) );
+				}
+				if ( get_next_post_link() ) {
+					next_post_link( '<span class="nav-next">%link</span>', _x( '%title<i class="fas fa-angle-right"></i>', 'Next post link', 'prutser' ) );
+				}
+				?>
+			</div>
+		</nav>
+		<?php
+	}
+}
+
+if ( ! function_exists( 'prutser_pagination' ) ) {
+	function prutser_pagination( $args = array(), $class = 'pagination' ) {
+		if ( $GLOBALS['wp_query']->max_num_pages <= 1 ) {
+			return;
+		}
+
+		$args = wp_parse_args(
+			$args,
+			array(
+				'mid_size'           => 2,
+				'prev_next'          => true,
+				'prev_text'          => '<i class="fas fa-angle-double-left"></i>',
+				'next_text'          => '<i class="fas fa-angle-double-right"></i>',
+				'type'               => 'array',
+				'current'            => max( 1, get_query_var( 'paged' ) ),
+			)
+		);
+
+		$links = paginate_links( $args );
+		?>
+		<nav aria-label="<?php echo __( 'Posts navigation', 'prutser' ); ?>">
+			<ul class="pagination">
+				<?php
+				foreach ( $links as $key => $link ) {
+					?>
+					<li class="page-item <?php echo strpos( $link, 'current' ) ? 'active' : ''; ?>">
+						<?php echo str_replace( 'page-numbers', 'page-link', $link ); ?>
+					</li>
+					<?php
+				}
+				?>
+			</ul>
+		</nav>
+		<?php
+	}
+}

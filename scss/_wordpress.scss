@@ -41,18 +41,12 @@ article.post:not(:first-of-type) {
 }
 
 .nav-links {
-  @extend .text-center;
   margin: $spacer;
 }
 
-nav .nav-links .nav-previous, nav .nav-links .nav-next {
-  display: inline-block;
-  padding: $spacer / 2;
-}
-
-nav .nav-links .nav-previous a, nav .nav-links .nav-next a {
-  @extend .btn;
-  @extend .btn-outline-primary;
+.pagination {
+  @extend .justify-content-center;
+  margin: $spacer;
 }
 
 .entry-footer > span:not(:last-of-type) {
@@ -99,4 +93,12 @@ nav .nav-links .nav-previous a, nav .nav-links .nav-next a {
 
 .entry-footer i.fas, .entry-footer i.far, .entry-footer i.fal, .entry-footer i.fad, .entry-footer i.fab {
   padding-right: $spacer / 2;
+}
+
+.nav-links i[class$="left"] {
+  padding-right: $spacer / 2;
+}
+
+.nav-links i[class$="right"] {
+  padding-left: $spacer / 2;
 }

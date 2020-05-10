@@ -14,11 +14,11 @@
 
 		endwhile;
 
-		prutser_pagination();
+		prutser_post_nav();
 
-	else :
-
-		get_template_part( 'content', 'none' );
+		if ( comments_open() || get_comments_number() ) :
+			comments_template();
+		endif;
 
 	endif;
 
