@@ -32,8 +32,24 @@
   border: $border-width solid $primary;
 }
 
-.navbar {
+nav.navbar {
   margin-bottom: $spacer * 1.5;
+}
+
+nav.navbar form {
+  @extend .form-inline;
+  @extend .my-2;
+  @extend .my-lg-0;
+}
+
+nav.navbar form input[type=search] {
+  @extend .form-control-sm;
+}
+
+nav.navbar form input[type=submit] {
+  @extend .btn-sm;
+  height: 2rem;
+  padding: 0 $btn-padding-x-sm;
 }
 
 article.post:not(:first-of-type) {
@@ -102,13 +118,19 @@ article.post:not(:first-of-type) {
   font-size: $h4-font-size;
 }
 
-.logged-in-as {
-  font-family: $font-family-sans-serif;
+.comment-form-comment {
+  @extend .form-group;
 }
 
-.comment-form-comment {
-  font-family: $font-family-sans-serif;
-  @extend .form-group;
+body > footer {
+  margin-top: $spacer * 2;
+  padding-top: $spacer;
+  padding-bottom: $spacer * 3;
+}
+
+body > footer h2.widget-title {
+  font-size: $font-size-base;
+  margin-bottom: 0;
 }
 
 /* Source: https://make.wordpress.org/accessibility/handbook/markup/the-css-class-screen-reader-text/ */

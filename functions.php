@@ -62,6 +62,52 @@ if ( ! function_exists( 'prutser_scripts' ) ) :
 endif;
 add_action( 'wp_enqueue_scripts', 'prutser_scripts' );
 
+if ( ! function_exists( 'prutser_widgets_init' ) ) :
+	function prutser_widgets_init() {
+		register_sidebar(
+			array(
+				'name'          => __( 'Navbar', 'prutser' ),
+				'id'            => 'navbar',
+				'before_widget' => '',
+				'after_widget'  => '',
+				'before_title'  => '',
+				'after_title'   => '',
+			)
+		);
+		register_sidebar(
+			array(
+				'name'          => __( 'Footer Left', 'prutser' ),
+				'id'            => 'footer-left',
+				'before_widget' => '',
+				'after_widget'  => '',
+				'before_title'  => '<h2 class="widget-title">',
+				'after_title'   => '</h2>',
+			)
+		);
+		register_sidebar(
+			array(
+				'name'          => __( 'Footer Middle', 'prutser' ),
+				'id'            => 'footer-middle',
+				'before_widget' => '',
+				'after_widget'  => '',
+				'before_title'  => '<h2 class="widget-title">',
+				'after_title'   => '</h2>',
+			)
+		);
+		register_sidebar(
+			array(
+				'name'          => __( 'Footer Right', 'prutser' ),
+				'id'            => 'footer-right',
+				'before_widget' => '',
+				'after_widget'  => '',
+				'before_title'  => '<h2 class="widget-title">',
+				'after_title'   => '</h2>',
+			)
+		);
+	}
+endif;
+add_action( 'widgets_init', 'prutser_widgets_init' );
+
 /**
  * NavWalker (for menu's)
  */

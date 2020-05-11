@@ -14,31 +14,7 @@
 	</header>
 
 	<div class="entry-content">
-		<?php
-		the_content(
-			sprintf(
-				wp_kses(
-					'Continue reading<i class="fas fa-angle-right"></i><span class="screen-reader-text"> "%s"</span>',
-					array(
-						'i'    => array(
-							'class' => array(),
-						),
-						'span' => array(
-							'class' => array(),
-						),
-					)
-				),
-				get_the_title()
-			)
-		);
-
-		wp_link_pages(
-			array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'prutser' ),
-				'after'  => '</div>',
-			)
-		);
-		?>
+		<?php the_excerpt(); ?>
 	</div>
 
 	<footer class="entry-footer">
