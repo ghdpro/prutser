@@ -119,24 +119,24 @@ if ( ! function_exists( 'prutser_pagination' ) ) {
 		$args = wp_parse_args(
 			$args,
 			array(
-				'mid_size'           => 2,
-				'prev_next'          => true,
-				'prev_text'          => '<i class="fas fa-angle-double-left"></i>',
-				'next_text'          => '<i class="fas fa-angle-double-right"></i>',
-				'type'               => 'array',
-				'current'            => max( 1, get_query_var( 'paged' ) ),
+				'mid_size'  => 2,
+				'prev_next' => true,
+				'prev_text' => '<i class="fas fa-angle-double-left"></i>',
+				'next_text' => '<i class="fas fa-angle-double-right"></i>',
+				'type'      => 'array',
+				'current'   => max( 1, get_query_var( 'paged' ) ),
 			)
 		);
 
 		$links = paginate_links( $args );
 		?>
-		<nav aria-label="<?php echo __( 'Posts navigation', 'prutser' ); ?>">
-			<ul class="pagination">
+		<nav aria-label="<?php echo __( 'Posts navigation', 'prutser' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
+			<ul class="pagination justify-content-center">
 				<?php
 				foreach ( $links as $key => $link ) {
 					?>
 					<li class="page-item <?php echo strpos( $link, 'current' ) ? 'active' : ''; ?>">
-						<?php echo str_replace( 'page-numbers', 'page-link', $link ); ?>
+						<?php echo str_replace( 'page-numbers', 'page-link', $link ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					</li>
 					<?php
 				}

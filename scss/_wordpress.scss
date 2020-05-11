@@ -25,7 +25,11 @@
 }
 
 .bypostauthor {
-  @extend .text-muted;
+  display: block;
+}
+
+.bypostauthor .avatar {
+  border: $border-width solid $primary;
 }
 
 .navbar {
@@ -45,12 +49,66 @@ article.post:not(:first-of-type) {
 }
 
 .pagination {
-  @extend .justify-content-center;
   margin: $spacer;
 }
 
 .entry-footer > span:not(:last-of-type) {
   padding-right: $spacer;
+}
+
+.comments-area {
+  margin: $spacer * 1.5 0;
+}
+
+.comments-title {
+  font-size: $h4-font-size;
+}
+
+.comment-navigation {
+  margin: $spacer;
+}
+
+.comment-navigation div:not(:last-of-type) {
+  padding-right: $spacer;
+}
+
+.comment {
+  list-style: none;
+}
+
+.comment .comment-body {
+  margin-top: $spacer * 1.5;
+}
+
+.comment .comment-author .avatar {
+  border-radius: $border-radius;
+  margin-right: $spacer / 2;
+}
+
+.comment .comment-author .fn {
+  font-size: $font-size-base;
+}
+
+.comment .comment-author .says {
+  display: none;
+}
+
+.comment-metadata {
+  font-size: $font-size-sm;
+  margin-bottom: $spacer / 2;
+}
+
+.comment-reply-title {
+  font-size: $h4-font-size;
+}
+
+.logged-in-as {
+  font-family: $font-family-sans-serif;
+}
+
+.comment-form-comment {
+  font-family: $font-family-sans-serif;
+  @extend .form-group;
 }
 
 /* Source: https://make.wordpress.org/accessibility/handbook/markup/the-css-class-screen-reader-text/ */
@@ -101,4 +159,19 @@ article.post:not(:first-of-type) {
 
 .nav-links i[class$="right"] {
   padding-left: $spacer / 2;
+}
+
+/* Forms */
+
+input[type=text], input[type=search], input[type=url], input[type=tel], input[type=number], input[type=range],
+input[type=date], input[type=month], input[type=week], input[type=time], input[type=datetime], input[type=datetime-local],
+input[type=color], input[type=email], input[type=file], input[type=submit], select, textarea {
+  @extend .form-control;
+  max-width: 720px;
+}
+
+input[type=submit] {
+  @extend .btn;
+  @extend .btn-outline-primary;
+  width: auto;
 }

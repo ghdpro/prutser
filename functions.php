@@ -55,6 +55,9 @@ if ( ! function_exists( 'prutser_scripts' ) ) :
 			'4.4.1',
 			true
 		);
+		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+			wp_enqueue_script( 'comment-reply' );
+		}
 	}
 endif;
 add_action( 'wp_enqueue_scripts', 'prutser_scripts' );
