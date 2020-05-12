@@ -8,7 +8,7 @@
 		?>
 		<header class="page-header">
 			<h1 class="page-title">
-				<?php _e( 'Search results for: ', 'prutser' ); ?>
+				<?php esc_html_e( 'Search results for: ', 'prutser' ); ?>
 				<span class="page-description"><?php echo get_search_query(); ?></span>
 			</h1>
 		</header>
