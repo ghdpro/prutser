@@ -17,6 +17,10 @@
 			get_search_form();
 
 			the_widget( 'WP_Widget_Recent_Posts' );
+
+			if ( ! is_active_sidebar( 'sidebar' ) ) :
+				the_widget( 'WP_Widget_Tag_Cloud' );
+			endif;
 		endif;
 		?>
 	</div>

@@ -1,29 +1,43 @@
 <?php get_header(); ?>
 
 <main class="container">
+	<?php if ( is_active_sidebar( 'sidebar' ) ) : ?>
+	<div class="row">
+		<div class="col-sm-8">
 
-	<?php
+			<?php
+			endif;
 
-	if ( have_posts() ) :
+			if ( have_posts() ) :
 
-		while ( have_posts() ) :
+				while ( have_posts() ) :
 
-			the_post();
+					the_post();
 
-			get_template_part( 'template-parts/content', get_post_format() );
+					get_template_part( 'template-parts/content', get_post_format() );
 
-		endwhile;
+				endwhile;
 
-		prutser_post_nav();
+				prutser_post_nav();
 
-		if ( comments_open() || get_comments_number() ) :
-			comments_template();
-		endif;
+				if ( comments_open() || get_comments_number() ) :
+					comments_template();
+				endif;
 
-	endif;
+			endif;
 
-	?>
+			if ( is_active_sidebar( 'sidebar' ) ) :
+			?>
 
+		</div>
+
+		<aside class="col-sm-4 sidebar">
+
+			<?php dynamic_sidebar( 'sidebar' ) ?>
+
+		</aside>
+	</div>
+<?php endif; ?>
 </main>
 
 <?php get_footer(); ?>

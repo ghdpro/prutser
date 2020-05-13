@@ -15,3 +15,6 @@ Initial version.
 
 = 0.1.1 =
 Updated Bootstrap to v4.5.0
+
+= 0.2 =
+Added support for optional sidebar.

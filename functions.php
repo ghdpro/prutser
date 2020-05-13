@@ -76,6 +76,16 @@ if ( ! function_exists( 'prutser_widgets_init' ) ) :
 		);
 		register_sidebar(
 			array(
+				'name'          => __( 'Sidebar', 'prutser' ),
+				'id'            => 'sidebar',
+				'before_widget' => '',
+				'after_widget'  => '',
+				'before_title'  => '<h2 class="widget-title">',
+				'after_title'   => '</h2>',
+			)
+		);
+		register_sidebar(
+			array(
 				'name'          => __( 'Footer Left', 'prutser' ),
 				'id'            => 'footer-left',
 				'before_widget' => '',
