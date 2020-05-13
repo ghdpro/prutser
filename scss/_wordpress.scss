@@ -60,11 +60,7 @@ article.post:not(:first-of-type) {
   display: none;
 }
 
-.nav-links {
-  margin: $spacer;
-}
-
-.pagination {
+.nav-links, .pagination {
   margin: $spacer;
 }
 
