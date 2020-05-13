@@ -12,3 +12,6 @@ The Prutser WordPress theme is a basic theme with support for Bootstrap 4.
 
 = 0.1 =
 Initial version.
+
+= 0.1.1 =
+Updated Bootstrap to v4.5.0

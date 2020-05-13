@@ -52,7 +52,7 @@ if ( ! function_exists( 'prutser_scripts' ) ) :
 			'bootstrap',
 			get_template_directory_uri() . '/assets/js/bootstrap.min.js',
 			array( 'jquery' ),
-			'4.4.1',
+			'4.5.0',
 			true
 		);
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
