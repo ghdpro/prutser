@@ -9,7 +9,6 @@ if ( ! function_exists( 'prutser_setup' ) ) :
 		load_theme_textdomain( 'prutser', get_template_directory() . '/languages' );
 		add_theme_support( 'automatic-feed-links' );
 		add_theme_support( 'title-tag' );
-		add_theme_support( 'post-thumbnails' );
 		add_theme_support(
 			'html5',
 			array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption', 'style', 'script' )

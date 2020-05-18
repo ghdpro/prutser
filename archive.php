@@ -41,7 +41,7 @@
 
 		<aside class="col-sm-4 sidebar">
 
-			<?php dynamic_sidebar( 'sidebar' ) ?>
+			<?php dynamic_sidebar( 'sidebar' ); ?>
 
 		</aside>
 	</div>
