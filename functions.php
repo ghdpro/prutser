@@ -132,3 +132,8 @@ add_action( 'after_setup_theme', 'prutser_register_navwalker' );
  * Template Tags
  */
 require get_template_directory() . '/inc/template-tags.php';
+
+/**
+ * Remove WordPress Core update notification
+ */
+add_filter( 'auto_core_update_send_email', '__return_false' );
