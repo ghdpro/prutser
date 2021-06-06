@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 /* WordPress specific (and required) CSS */
 
 .aligncenter {
@@ -5,11 +7,11 @@
 }
 
 .alignright {
-  @extend .text-right;
+  @extend .text-end;
 }
 
 .alignleft {
-  @extend .text-left;
+  @extend .text-start;
 }
 
 .wp-caption {
@@ -37,9 +39,12 @@ nav.navbar {
 }
 
 nav.navbar form {
-  @extend .form-inline;
   @extend .my-2;
   @extend .my-lg-0;
+}
+
+nav.navbar form.search-form {
+  @extend .g-0;
 }
 
 nav.navbar form input[type=search] {
@@ -47,9 +52,12 @@ nav.navbar form input[type=search] {
 }
 
 nav.navbar form input[type=submit] {
-  @extend .btn-sm;
-  height: 2rem;
+  @extend .form-control-sm;
   padding: 0 $btn-padding-x-sm;
+}
+
+article.page:not(:first-of-type) {
+  margin-top: $spacer * 3;
 }
 
 article.post:not(:first-of-type) {
@@ -62,6 +70,10 @@ article.post:not(:first-of-type) {
 
 .nav-links, .pagination {
   margin: $spacer;
+}
+
+.entry-content {
+  @include clearfix;
 }
 
 .entry-footer > span:not(:last-of-type) {
@@ -94,7 +106,7 @@ article.post:not(:first-of-type) {
 
 .comment .comment-author .avatar {
   border-radius: $border-radius;
-  margin-right: $spacer / 2;
+  margin-right: math.div($spacer, 2);
 }
 
 .comment .comment-author .fn {
@@ -107,15 +119,11 @@ article.post:not(:first-of-type) {
 
 .comment-metadata {
   font-size: $font-size-sm;
-  margin-bottom: $spacer / 2;
+  margin-bottom: math.div($spacer, 2);
 }
 
 .comment-reply-title {
   font-size: $h4-font-size;
-}
-
-.comment-form-comment {
-  @extend .form-group;
 }
 
 body > footer {
@@ -164,19 +172,19 @@ body > footer h2.widget-title {
 /* Font Awesome */
 
 .more-link i.fas, .more-link i.far, .more-link i.fal, .more-link i.fad, .more-link i.fab {
-  padding-left: $spacer / 2;
+  padding-left: math.div($spacer, 2);
 }
 
 .entry-footer i.fas, .entry-footer i.far, .entry-footer i.fal, .entry-footer i.fad, .entry-footer i.fab {
-  padding-right: $spacer / 2;
+  padding-right: math.div($spacer, 2);
 }
 
 .nav-links i[class$="left"] {
-  padding-right: $spacer / 2;
+  padding-right: math.div($spacer, 2);
 }
 
 .nav-links i[class$="right"] {
-  padding-left: $spacer / 2;
+  padding-left: math.div($spacer, 2);
 }
 
 /* Forms */

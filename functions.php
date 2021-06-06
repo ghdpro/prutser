@@ -43,15 +43,15 @@ if ( ! function_exists( 'prutser_scripts' ) ) :
 			'popperjs',
 			get_template_directory_uri() . '/assets/js/popper.min.js',
 			array(),
-			'1.16.1',
+			'2.9.2',
 			true
 		);
-		// Bootstrap 4 requires jQuery and yes is still compatible with jQuery 1.12 as included with WordPress
+		// Bootstrap 5
 		wp_enqueue_script(
 			'bootstrap',
 			get_template_directory_uri() . '/assets/js/bootstrap.min.js',
-			array( 'jquery' ),
-			'4.5.0',
+			array(),
+			'5.0.1',
 			true
 		);
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -127,6 +127,18 @@ if ( ! function_exists( 'prutser_register_navwalker' ) ) :
 	}
 endif;
 add_action( 'after_setup_theme', 'prutser_register_navwalker' );
+
+function prefix_bs5_dropdown_data_attribute( $atts, $item, $args ) {
+	if ( is_a( $args->walker, 'WP_Bootstrap_Navwalker' ) ) {
+		if ( array_key_exists( 'data-toggle', $atts ) ) {
+			unset( $atts['data-toggle'] );
+			$atts['data-bs-toggle'] = 'dropdown';
+		}
+	}
+
+	return $atts;
+}
+add_filter( 'nav_menu_link_attributes', 'prefix_bs5_dropdown_data_attribute', 20, 3 );
 
 /**
  * Template Tags
