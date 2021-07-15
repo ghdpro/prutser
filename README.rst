@@ -1,7 +1,7 @@
 Prutser WordPress Theme
 =======================
 
-The **Prutser** WordPress Theme is a basic theme build upon Bootstrap (v4).
+The **Prutser** WordPress Theme is a basic theme build upon Bootstrap (v5).
 It is mainly intended for personal use (for now) and serve as a base for
 child themes for specific sites.
 
