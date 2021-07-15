@@ -146,6 +146,8 @@ add_filter( 'nav_menu_link_attributes', 'prefix_bs5_dropdown_data_attribute', 20
 require get_template_directory() . '/inc/template-tags.php';
 
 /**
- * Remove WordPress Core update notification
+ * Remove WordPress update notifications
  */
 add_filter( 'auto_core_update_send_email', '__return_false' );
+add_filter( 'auto_plugin_update_send_email', '__return_false' );
+add_filter( 'auto_theme_update_send_email', '__return_false' );
