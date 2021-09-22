@@ -43,7 +43,7 @@ if ( ! function_exists( 'prutser_scripts' ) ) :
 			'popperjs',
 			get_template_directory_uri() . '/assets/js/popper.min.js',
 			array(),
-			'2.9.2',
+			'2.10.1',
 			true
 		);
 		// Bootstrap 5
@@ -51,7 +51,7 @@ if ( ! function_exists( 'prutser_scripts' ) ) :
 			'bootstrap',
 			get_template_directory_uri() . '/assets/js/bootstrap.min.js',
 			array(),
-			'5.0.1',
+			'5.1.1',
 			true
 		);
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
