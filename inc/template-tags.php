@@ -93,7 +93,7 @@ if ( ! function_exists( 'prutser_post_nav' ) ) {
 			return;
 		}
 		?>
-		<nav class="navigation post-navigation">
+		<nav class="navigation post-navigation" aria-label="Post navigation">
 			<h2 class="screen-reader-text"><?php esc_html_e( 'Post navigation', 'prutser' ); ?></h2>
 			<div class="row nav-links justify-content-between">
 				<?php
@@ -111,7 +111,7 @@ if ( ! function_exists( 'prutser_post_nav' ) ) {
 }
 
 if ( ! function_exists( 'prutser_pagination' ) ) {
-	function prutser_pagination( $args = array(), $class = 'pagination' ) {
+	function prutser_pagination( $args = array(), $class = 'pagination' ) { //NOSONAR
 		if ( $GLOBALS['wp_query']->max_num_pages <= 1 ) {
 			return;
 		}
@@ -133,7 +133,7 @@ if ( ! function_exists( 'prutser_pagination' ) ) {
 		<nav aria-label="<?php echo __( 'Posts navigation', 'prutser' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
 			<ul class="pagination justify-content-center">
 				<?php
-				foreach ( $links as $key => $link ) {
+				foreach ( $links as $link ) {
 					?>
 					<li class="page-item <?php echo strpos( $link, 'current' ) ? 'active' : ''; ?>">
 						<?php echo str_replace( 'page-numbers', 'page-link', $link ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>

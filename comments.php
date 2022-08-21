@@ -28,7 +28,7 @@ if ( post_password_required() ) {
 		</h2>
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>
-		<nav class="comment-navigation justify-content-between" id="comment-nav-above">
+		<nav class="comment-navigation justify-content-between" id="comment-nav-above" aria-label="Comment navigation">
 			<div class="row">
 				<h1 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'prutser' ); ?></h1>
 				<?php if ( get_previous_comments_link() ) { ?>
@@ -57,7 +57,7 @@ if ( post_password_required() ) {
 		</ol>
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>
-		<nav class="comment-navigation" id="comment-nav-above">
+		<nav class="comment-navigation" id="comment-nav-above" aria-label="Comment navigation">
 			<div class="row">
 				<h1 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'prutser' ); ?></h1>
 				<?php if ( get_previous_comments_link() ) { ?>

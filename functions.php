@@ -43,7 +43,7 @@ if ( ! function_exists( 'prutser_scripts' ) ) :
 			'popperjs',
 			get_template_directory_uri() . '/assets/js/popper.min.js',
 			array(),
-			'2.10.1',
+			'2.11.6',
 			true
 		);
 		// Bootstrap 5
@@ -51,7 +51,7 @@ if ( ! function_exists( 'prutser_scripts' ) ) :
 			'bootstrap',
 			get_template_directory_uri() . '/assets/js/bootstrap.min.js',
 			array(),
-			'5.1.1',
+			'5.2.0',
 			true
 		);
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -79,8 +79,8 @@ if ( ! function_exists( 'prutser_widgets_init' ) ) :
 				'id'            => 'sidebar',
 				'before_widget' => '',
 				'after_widget'  => '',
-				'before_title'  => '<h2 class="widget-title">',
-				'after_title'   => '</h2>',
+				'before_title'  => '<h2 class="widget-title">', //NOSONAR
+				'after_title'   => '</h2>', //NOSONAR
 			)
 		);
 		register_sidebar(
@@ -89,8 +89,8 @@ if ( ! function_exists( 'prutser_widgets_init' ) ) :
 				'id'            => 'footer-left',
 				'before_widget' => '',
 				'after_widget'  => '',
-				'before_title'  => '<h2 class="widget-title">',
-				'after_title'   => '</h2>',
+				'before_title'  => '<h2 class="widget-title">', //NOSONAR
+				'after_title'   => '</h2>', //NOSONAR
 			)
 		);
 		register_sidebar(
@@ -99,8 +99,8 @@ if ( ! function_exists( 'prutser_widgets_init' ) ) :
 				'id'            => 'footer-middle',
 				'before_widget' => '',
 				'after_widget'  => '',
-				'before_title'  => '<h2 class="widget-title">',
-				'after_title'   => '</h2>',
+				'before_title'  => '<h2 class="widget-title">', //NOSONAR
+				'after_title'   => '</h2>', //NOSONAR
 			)
 		);
 		register_sidebar(
@@ -109,8 +109,8 @@ if ( ! function_exists( 'prutser_widgets_init' ) ) :
 				'id'            => 'footer-right',
 				'before_widget' => '',
 				'after_widget'  => '',
-				'before_title'  => '<h2 class="widget-title">',
-				'after_title'   => '</h2>',
+				'before_title'  => '<h2 class="widget-title">', //NOSONAR
+				'after_title'   => '</h2>', //NOSONAR
 			)
 		);
 	}
@@ -128,12 +128,10 @@ if ( ! function_exists( 'prutser_register_navwalker' ) ) :
 endif;
 add_action( 'after_setup_theme', 'prutser_register_navwalker' );
 
-function prefix_bs5_dropdown_data_attribute( $atts, $item, $args ) {
-	if ( is_a( $args->walker, 'WP_Bootstrap_Navwalker' ) ) {
-		if ( array_key_exists( 'data-toggle', $atts ) ) {
+function prefix_bs5_dropdown_data_attribute( $atts, $item, $args ) { //NOSONAR
+	if ( is_a( $args->walker, 'WP_Bootstrap_Navwalker' ) && ( array_key_exists( 'data-toggle', $atts ) ) ) {
 			unset( $atts['data-toggle'] );
 			$atts['data-bs-toggle'] = 'dropdown';
-		}
 	}
 
 	return $atts;
@@ -148,6 +146,6 @@ require get_template_directory() . '/inc/template-tags.php';
 /**
  * Remove WordPress update notifications
  */
-add_filter( 'auto_core_update_send_email', '__return_false' );
-add_filter( 'auto_plugin_update_send_email', '__return_false' );
-add_filter( 'auto_theme_update_send_email', '__return_false' );
+add_filter( 'auto_core_update_send_email', '__return_false' ); //NOSONAR
+add_filter( 'auto_plugin_update_send_email', '__return_false' ); //NOSONAR
+add_filter( 'auto_theme_update_send_email', '__return_false' ); //NOSONAR
