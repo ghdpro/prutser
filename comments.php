@@ -28,8 +28,8 @@ if ( post_password_required() ) {
 		</h2>
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>
-		<nav class="comment-navigation justify-content-between" id="comment-nav-above" aria-label="Comment navigation">
-			<div class="row">
+        <nav class="comment-navigation justify-content-between" id="comment-nav-above" aria-label="<?php esc_attr_e( 'Comment navigation', 'prutser' ); ?>">
+        <div class="row">
 				<h1 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'prutser' ); ?></h1>
 				<?php if ( get_previous_comments_link() ) { ?>
 					<div class="nav-previous">
@@ -57,7 +57,7 @@ if ( post_password_required() ) {
 		</ol>
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>
-		<nav class="comment-navigation" id="comment-nav-above" aria-label="Comment navigation">
+        <nav class="comment-navigation" id="comment-nav-below" aria-label="<?php esc_attr_e( 'Comment navigation', 'prutser' ); ?>">
 			<div class="row">
 				<h1 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'prutser' ); ?></h1>
 				<?php if ( get_previous_comments_link() ) { ?>
@@ -77,7 +77,7 @@ if ( post_password_required() ) {
 
 		if ( ! comments_open() ) :
 			?>
-			<p class="no-comments"><?php esc_html( 'Comments are closed.' ); ?></p>
+			<p class="no-comments"><?php echo esc_html( 'Comments are closed.' ); ?></p>
 			<?php
 		endif;
 

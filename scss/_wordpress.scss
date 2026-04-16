@@ -171,11 +171,11 @@ body > footer h2.widget-title {
 
 /* Font Awesome */
 
-.more-link i.fas, .more-link i.far, .more-link i.fal, .more-link i.fad, .more-link i.fab {
+.more-link i.fas, .more-link i.fa-solid, .more-link i.far, .more-link i.fa-regular, .more-link i.fal, .more-link i.fa-light {
   padding-left: math.div($spacer, 2);
 }
 
-.entry-footer i.fas, .entry-footer i.far, .entry-footer i.fal, .entry-footer i.fad, .entry-footer i.fab {
+.more-footer i.fas, .more-footer i.fa-solid, .more-footer i.far, .more-footer i.fa-regular, .more-footer i.fal, .more-footer i.fa-light {
   padding-right: math.div($spacer, 2);
 }
 

@@ -2,7 +2,7 @@
 	<div class="col-auto">
 	    <label>
 	        <span class="screen-reader-text"><?php echo esc_attr_x( 'Search for:', 'label' ) ?></span>
-	        <input type="search" class="form-control search-field" placeholder="<?php echo esc_attr_x( 'Search &hellip;', 'placeholder' ) ?>" value="<?php echo get_search_query() ?>" name="s"/>
+	        <input type="search" class="form-control search-field" placeholder="<?php echo esc_attr_x( 'Search &hellip;', 'placeholder' ) ?>" value="<?php echo esc_attr( get_search_query() ) ?>" name="s"/>
 	    </label>
 	</div>
 	<div class="col-auto">

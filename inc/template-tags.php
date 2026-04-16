@@ -16,9 +16,9 @@ if ( ! function_exists( 'prutser_entry_posted_on' ) ) :
 		);
 
 		printf(
-			'<span class="posted-on"><i class="fas fa-clock"></i><a href="%1$s" rel="bookmark">%2$s</a></span>',
+			'<span class="posted-on"><i class="fa-solid fa-clock"></i><a href="%1$s" rel="bookmark">%2$s</a></span>',
 			esc_url( get_permalink() ),
-			$time_string // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+            wp_kses( $time_string, array( 'time' => array( 'class' => true, 'datetime' => true ) ) )
 		);
 	}
 endif;
@@ -32,23 +32,23 @@ if ( ! function_exists( 'prutser_entry_footer' ) ) :
 		$categories_list = get_the_category_list( ', ' );
 		if ( $categories_list ) {
 			printf(
-				'<span class="cat-links"><i class="fas fa-folder"></i><span class="screen-reader-text">%1$s</span>%2$s</span>',
+				'<span class="cat-links"><i class="fa-solid fa-folder"></i><span class="screen-reader-text">%1$s</span>%2$s</span>',
 				'Posted in ',
-				$categories_list // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                wp_kses_post( $categories_list )
 			);
 		}
 
 		$tags_list = get_the_tag_list( '', ', ' );
 		if ( $tags_list ) {
 			printf(
-				'<span class="tags-links"><i class="fas fa-tag"></i><span class="screen-reader-text">%1$s</span>%2$s</span>',
+				'<span class="tags-links"><i class="fa-solid fa-tag"></i><span class="screen-reader-text">%1$s</span>%2$s</span>',
 				'Tags: ',
-				$tags_list // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                wp_kses_post( $tags_list )
 			);
 		}
 
 		if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
-			echo '<span class="comments-link"><i class="fas fa-comment"></i>';
+			echo '<span class="comments-link"><i class="fa-solid fa-comment"></i>';
 			comments_popup_link(
 				sprintf(
 					wp_kses(
@@ -77,7 +77,7 @@ if ( ! function_exists( 'prutser_entry_footer' ) ) :
 				),
 				get_the_title()
 			),
-			'<span class="edit-link"><i class="fas fa-pencil-alt"></i>',
+			'<span class="edit-link"><i class="fa-solid fa-pen-to-square"></i>',
 			'</span>'
 		);
 
@@ -98,10 +98,10 @@ if ( ! function_exists( 'prutser_post_nav' ) ) {
 			<div class="row nav-links justify-content-between">
 				<?php
 				if ( get_previous_post_link() ) {
-					previous_post_link( '<span class="nav-previous">%link</span>', _x( '<i class="fas fa-angle-left"></i>%title', 'Previous post link', 'prutser' ) );
+					previous_post_link( '<span class="nav-previous">%link</span>', _x( '<i class="fa-solid fa-angle-left"></i>%title', 'Previous post link', 'prutser' ) );
 				}
 				if ( get_next_post_link() ) {
-					next_post_link( '<span class="nav-next">%link</span>', _x( '%title<i class="fas fa-angle-right"></i>', 'Next post link', 'prutser' ) );
+					next_post_link( '<span class="nav-next">%link</span>', _x( '%title<i class="fa-solid fa-angle-right"></i>', 'Next post link', 'prutser' ) );
 				}
 				?>
 			</div>
@@ -111,7 +111,7 @@ if ( ! function_exists( 'prutser_post_nav' ) ) {
 }
 
 if ( ! function_exists( 'prutser_pagination' ) ) {
-	function prutser_pagination( $args = array(), $class = 'pagination' ) { //NOSONAR
+	function prutser_pagination( $args = array(), $class = 'pagination' ) {
 		if ( $GLOBALS['wp_query']->max_num_pages <= 1 ) {
 			return;
 		}
@@ -121,8 +121,8 @@ if ( ! function_exists( 'prutser_pagination' ) ) {
 			array(
 				'mid_size'  => 2,
 				'prev_next' => true,
-				'prev_text' => '<i class="fas fa-angle-double-left"></i>',
-				'next_text' => '<i class="fas fa-angle-double-right"></i>',
+				'prev_text' => '<i class="fa-solid fa-angles-left"></i>',
+				'next_text' => '<i class="fa-solid fa-angles-right"></i>',
 				'type'      => 'array',
 				'current'   => max( 1, get_query_var( 'paged' ) ),
 			)
@@ -130,13 +130,13 @@ if ( ! function_exists( 'prutser_pagination' ) ) {
 
 		$links = paginate_links( $args );
 		?>
-		<nav aria-label="<?php echo __( 'Posts navigation', 'prutser' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
-			<ul class="pagination justify-content-center">
+		<nav aria-label="<?php esc_attr_e( 'Posts navigation', 'prutser' ); ?>">
+			<ul class="<?php echo esc_attr( $class ); ?> justify-content-center">
 				<?php
 				foreach ( $links as $link ) {
 					?>
-					<li class="page-item <?php echo strpos( $link, 'current' ) ? 'active' : ''; ?>">
-						<?php echo str_replace( 'page-numbers', 'page-link', $link ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					<li class="page-item <?php echo strpos( $link, 'current' ) !== false ? 'active' : ''; ?>">
+						<?php echo wp_kses_post( str_replace( 'page-numbers', 'page-link', $link ) ); ?>
 					</li>
 					<?php
 				}

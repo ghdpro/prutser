@@ -1,7 +1,7 @@
 === Prutser ===
-Requires at least: 5.4
-Tested up to: 5.4
-Requires PHP: 7.3
+Requires at least: 6.2
+Tested up to: 6.9
+Requires PHP: 8.2
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -27,3 +27,9 @@ Updated Bootstrap to v5.0.2.
 
 = 0.3.2 =
 Updated Bootstrap to v5.1.1 and Popper to v2.10.1.
+
+= 0.4.0 =
+Updated Bootstrap to v5.3.3.
+
+= 0.5.0 =
+Updated Bootstrap to v5.3.8 and made many security improvements.

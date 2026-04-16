@@ -13,7 +13,7 @@
 				<header class="page-header">
 					<h1 class="page-title">
 						<?php esc_html_e( 'Search results for: ', 'prutser' ); ?>
-						<span class="page-description"><?php echo get_search_query(); ?></span>
+						<span class="page-description"><?php echo esc_html( get_search_query() ); ?></span>
 					</h1>
 				</header>
 				<?php

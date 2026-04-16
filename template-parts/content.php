@@ -17,7 +17,7 @@
 		the_content(
 			sprintf(
 				wp_kses(
-					'Continue reading<i class="fas fa-angle-right"></i><span class="screen-reader-text"> "%s"</span>',
+					'Continue reading<i class="fa-solid fa-angle-right"></i><span class="screen-reader-text"> "%s"</span>',
 					array(
 						'i'    => array(
 							'class' => array(),

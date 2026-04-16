@@ -51,7 +51,7 @@ if ( ! function_exists( 'prutser_scripts' ) ) :
 			'bootstrap',
 			get_template_directory_uri() . '/assets/js/bootstrap.min.js',
 			array(),
-			'5.2.0',
+			'5.3.8',
 			true
 		);
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -73,6 +73,7 @@ if ( ! function_exists( 'prutser_widgets_init' ) ) :
 				'after_title'   => '',
 			)
 		);
+        // WordPress sidebar API requires raw HTML strings for before_title/after_title
 		register_sidebar(
 			array(
 				'name'          => __( 'Sidebar', 'prutser' ),
@@ -118,6 +119,44 @@ endif;
 add_action( 'widgets_init', 'prutser_widgets_init' );
 
 /**
+ * Check if the official Font Awesome plugin has been loaded.
+ */
+add_action( 'init', 'prutser_check_font_awesome', 20 );
+
+function prutser_check_font_awesome() {
+    if ( ! is_admin() ) {
+        return;
+    }
+
+    add_action( 'admin_notices', 'prutser_font_awesome_notice' );
+}
+
+function prutser_font_awesome_notice() {
+    if ( ! function_exists( 'FortAwesome\\fa' ) ) {
+        ?>
+        <div class="notice notice-warning">
+            <p><?php esc_html_e( 'The Prutser theme requires the official Font Awesome plugin.', 'prutser' ); ?></p>
+        </div>
+        <?php
+        return;
+    }
+
+    try {
+        $version = \FortAwesome\fa()->version();
+    } catch ( Throwable $e ) {
+        $version = null;
+    }
+
+    if ( ! is_string( $version ) || version_compare( $version, '6.0.0', '<' ) ) {
+        ?>
+        <div class="notice notice-warning">
+            <p><?php esc_html_e( 'The Prutser theme requires the Font Awesome plugin to load version 6 or newer.', 'prutser' ); ?></p>
+        </div>
+        <?php
+    }
+}
+
+/**
  * NavWalker (for menu's)
  */
 
@@ -128,7 +167,7 @@ if ( ! function_exists( 'prutser_register_navwalker' ) ) :
 endif;
 add_action( 'after_setup_theme', 'prutser_register_navwalker' );
 
-function prefix_bs5_dropdown_data_attribute( $atts, $item, $args ) { //NOSONAR
+function prutser_bs5_dropdown_data_attribute( $atts, $item, $args ) {
 	if ( is_a( $args->walker, 'WP_Bootstrap_Navwalker' ) && ( array_key_exists( 'data-toggle', $atts ) ) ) {
 			unset( $atts['data-toggle'] );
 			$atts['data-bs-toggle'] = 'dropdown';
@@ -136,7 +175,7 @@ function prefix_bs5_dropdown_data_attribute( $atts, $item, $args ) { //NOSONAR
 
 	return $atts;
 }
-add_filter( 'nav_menu_link_attributes', 'prefix_bs5_dropdown_data_attribute', 20, 3 );
+add_filter( 'nav_menu_link_attributes', 'prutser_bs5_dropdown_data_attribute', 20, 3 );
 
 /**
  * Template Tags
@@ -146,6 +185,13 @@ require get_template_directory() . '/inc/template-tags.php';
 /**
  * Remove WordPress update notifications
  */
+// Using '__return_false' is valid for WordPress
 add_filter( 'auto_core_update_send_email', '__return_false' ); //NOSONAR
 add_filter( 'auto_plugin_update_send_email', '__return_false' ); //NOSONAR
 add_filter( 'auto_theme_update_send_email', '__return_false' ); //NOSONAR
+
+// Remove WordPress version from <head>
+remove_action( 'wp_head', 'wp_generator' );
+
+// Remove WordPress version from RSS/Atom feeds
+add_filter( 'the_generator', '__return_empty_string' ); //NOSONAR
